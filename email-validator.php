@@ -269,8 +269,9 @@ class SMTPEmailValidator
 
         // Удаляем кэш с банами
         if ($invalidCount > 0) {
-            define('ENGINE_DIR', __DIR__ . '/engine');
-            @unlink(ENGINE_DIR . '/cache/system/banned.php');
+            if (is_file(__DIR__ . '/engine/cache/system/banned.php')) {
+                unlink(__DIR__ . '/engine/cache/system/banned.php');
+            }
         }
 
         return [
