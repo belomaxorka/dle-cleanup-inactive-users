@@ -306,9 +306,9 @@ class SMTPEmailValidator
             $stmt_banned->bind_param("is", $user_id, $this->banDescription);
 
             if ($stmt_banned->execute()) {
-                $this->log("Запись добавлена в таблицу dle_banned для user_id = $user_id");
+                $this->log("Запись добавлена в таблицу " . PREFIX . "_banned для user_id = $user_id");
             } else {
-                $this->log("Ошибка при добавлении записи в dle_banned для user_id = $user_id: " . $stmt_banned->error);
+                $this->log("Ошибка при добавлении записи в " . PREFIX . "_banned для user_id = $user_id: " . $stmt_banned->error);
             }
             $stmt_banned->close();
 
@@ -320,12 +320,12 @@ class SMTPEmailValidator
             if ($stmt_subscribe->execute()) {
                 $deleted_rows = $stmt_subscribe->affected_rows;
                 if ($deleted_rows > 0) {
-                    $this->log("Удалено $deleted_rows записей из dle_subscribe для user_id = $user_id");
+                    $this->log("Удалено $deleted_rows записей из " . PREFIX . "_subscribe для user_id = $user_id");
                 } else {
-                    $this->log("Записей для удаления в dle_subscribe не найдено для user_id = $user_id");
+                    $this->log("Записей для удаления в " . PREFIX . "_subscribe не найдено для user_id = $user_id");
                 }
             } else {
-                $this->log("Ошибка при удалении записи из dle_subscribe для user_id = $user_id: " . $stmt_subscribe->error);
+                $this->log("Ошибка при удалении записи из " . PREFIX . "_subscribe для user_id = $user_id: " . $stmt_subscribe->error);
             }
             $stmt_subscribe->close();
         } else {
