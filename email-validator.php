@@ -358,6 +358,10 @@ class SMTPEmailValidator
 
         $this->log("Начинаем проверку $total email адресов батчами по $batchSize");
         $this->log("Неактивных (оффлайн): " . floor($this->inactiveThreshold / 86400) . " дней");
+        if ($this->dryRun) {
+            $this->log("");
+            $this->log("РЕЖИМ ТЕСТИРОВАНИЯ - изменения не применены!");
+        }
 
         $totalStats = ['valid' => 0, 'invalid' => 0, 'errors' => 0];
 
